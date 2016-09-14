@@ -33,6 +33,25 @@ exports.schema = new graphql.GraphQLSchema({
                 resolve: function (_, args) {
                     return data[args.id];
                 }
+            },
+            many: {
+                description: "get many user by ids {many(ids:[\"2\",\"3\"]){name, id}}",
+                type: new graphql.GraphQLList(userType),
+                // `args` describes the arguments that the `user` query accepts
+                args: {
+                    ids: { type: new graphql.GraphQLList(graphql.GraphQLString) }
+                },
+                resolve: function (_, args) {
+                    var users = [];
+                    Object.keys(data).forEach(function (key) {
+                        var user = data[key];
+                        if (args.ids.indexOf(user.id) !== -1) {
+                            users.push(user);
+                        }
+                        ;
+                    });
+                    return users;
+                }
             }
         }
     })

@@ -15,12 +15,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 global['app'] = app;
 
 // install routes
-connectorsRoute(app);
-routesRoute(app);
-pushRoute(app);
+// connectorsRoute(app);
+// routesRoute(app);
+// pushRoute(app);
 userRoute(app);
 app.get('/', function (req, res) {
   res.send('Hello World!');
 });
 // start express server
-app.listen(app.get('port'));
+app.listen(app.get('port') ? app.get('port') : 3000);
