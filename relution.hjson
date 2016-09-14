@@ -1,0 +1,18 @@
+{
+  //app name
+  name: project
+  //description for the project
+  description: Auto Generated Description for project.
+  //on which baseAlias the app is available
+  baseAlias: /project
+  //uuid identifier dont touch it!!!
+  uuid: 6e57b070-7aa2-11e6-ae23-ab486457f7c8
+  //static files root folder to your client application
+  client: ./www
+  //node start script
+  server: ./app.js
+  //shows directoryIndex on the Server good for debugging
+  //directoryIndex: true
+  //if this attribute is set to true no anonymous user can see the app
+  private: false
+}
