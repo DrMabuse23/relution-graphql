@@ -21,6 +21,7 @@ export const schema = new graphql.GraphQLSchema({
     name: 'Query',
     fields: {
       user: {
+        description: `get a user by id {user(id:"2"){name, id}}`,
         type: userType,
         // `args` describes the arguments that the `user` query accepts
         args: {
@@ -35,13 +36,18 @@ export const schema = new graphql.GraphQLSchema({
         }
       },
       many: {
-        description: `get many user by ids {many(ids:["2","3"]){name, id}}`,
+        description: `get many user by ids {many(ids:["2","3"]){name, id}} or all with {many{name, id}}`,
         type: new graphql.GraphQLList(userType),
         // `args` describes the arguments that the `user` query accepts
         args: {
           ids: { type: new graphql.GraphQLList(graphql.GraphQLString) }
         },
         resolve: function (_, args) {
+          if (!args.ids) {
+            return Object.keys(data).map((key) => {
+              return data[key];
+            });
+          }
           let users = [];
           Object.keys(data).forEach((key) => {
             const user = data[key];
