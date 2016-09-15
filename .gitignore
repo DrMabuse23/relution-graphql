@@ -37,3 +37,7 @@ jspm_packages
 .node_repl_history
 /.vscode
 /typings
+.DS_Store
+**/.DS_Store
+/**/.DS_Store
+/connections/.DS_Store
